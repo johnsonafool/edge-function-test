@@ -2,11 +2,9 @@ import { NextFetchEvent, NextRequest } from "next/server";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 import { extractBody } from "@/lib/extract-body";
-import prisma from "@/lib/connect-prisma";
+import { prisma } from "@/lib/connect-prisma";
 
-// export const config = {
-//   runtime: "edge",
-// };
+// export const runtime = "edge";
 
 const createCommentSchema = z.object({
   page: z.string().max(64).min(1),
@@ -33,6 +31,8 @@ async function readCommentsHandler(req: NextRequest, event: NextFetchEvent) {
         createdAt: "desc",
       },
     });
+
+    console.log({ comments });
 
     return new Response(JSON.stringify(comments));
   } catch (e) {
@@ -81,9 +81,21 @@ async function createCommentHandler(req: NextRequest, event: NextFetchEvent) {
 }
 
 export async function GET(req: NextRequest, event: NextFetchEvent) {
+  if (req.method !== "GET") {
+    return new Response("invalid method", {
+      status: 405,
+    });
+  }
+
   return readCommentsHandler(req, event);
 }
 
 export async function POST(req: NextRequest, event: NextFetchEvent) {
+  if (req.method !== "POST") {
+    return new Response("invalid method", {
+      status: 405,
+    });
+  }
+
   return createCommentHandler(req, event);
 }

@@ -1,7 +1,7 @@
 import { type NextFetchEvent, type NextRequest } from "next/server";
 import { z } from "zod";
 import { extractBody } from "@/lib/extract-body";
-import prisma from "@/lib/connect-prisma";
+import { prisma } from "@/lib/connect-prisma";
 
 // export const config = {
 //   runtime: "edge",
