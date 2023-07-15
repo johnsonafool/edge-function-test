@@ -58,7 +58,7 @@ export default function Home() {
                 id="handle"
                 name="handle"
                 type="text"
-                placeholder="@hello_world"
+                placeholder="start asking"
                 required
               />
             </div>

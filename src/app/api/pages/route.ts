@@ -1,9 +1,8 @@
-import {
-  NextResponse,
+import {  
   type NextFetchEvent,
   type NextRequest,
 } from "next/server";
-import { string, z } from "zod";
+import { z } from "zod";
 import { extractBody } from "@/lib/extract-body";
 import prisma from "@/lib/connect-prisma";
 
@@ -31,7 +30,7 @@ async function createPageHandler(req: NextRequest, event: NextFetchEvent) {
   try {
     await prisma.page.create({
       data: {
-        handle
+        handle,
       },
     });
 
