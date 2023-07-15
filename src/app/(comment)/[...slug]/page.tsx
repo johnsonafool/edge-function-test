@@ -1,21 +1,20 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { comment } from "postcss";
 
 type Comment = {
   id: string;
   comment: string;
-  created_at: string;
+  createdAt: string;
 };
 
 export default function Page() {
-  const searchParams = useSearchParams();
+  const path = usePathname();
 
-  const handle = searchParams.get("handle");
-
-  console.log({ handle });
+  const handle = path.split("/").pop();
 
   const { data, refetch } = useQuery({
     queryFn: () =>
@@ -96,15 +95,15 @@ export default function Page() {
       {data?.map((comment) => {
         return (
           <div
-            className="bg-gray-100 rounded-lg shadow-lg max-w-md mx-auto my-4"
+            className="bg-gray-700 rounded-lg shadow-lg max-w-md mx-auto my-4"
             key={`comment__${comment.id}`}
           >
             {comment.comment}
 
             <br />
 
-            <span className="text-gray-500 text-right text-sm">
-              {new Date(comment.created_at).toDateString()}
+            <span className="text-gray-400 text-right text-sm">
+              {new Date(comment.createdAt).toDateString()}
             </span>
           </div>
         );

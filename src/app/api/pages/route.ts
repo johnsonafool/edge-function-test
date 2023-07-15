@@ -23,7 +23,7 @@ async function createPageHandler(req: NextRequest, event: NextFetchEvent) {
     handle = pageHandle;
   } catch (err) {
     if (err instanceof z.ZodError) {
-      console.log(err.issues);
+      console.error(err.issues);
     }
   }
 
