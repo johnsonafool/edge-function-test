@@ -1,7 +1,4 @@
-import {  
-  type NextFetchEvent,
-  type NextRequest,
-} from "next/server";
+import { type NextFetchEvent, type NextRequest } from "next/server";
 import { z } from "zod";
 import { extractBody } from "@/lib/extract-body";
 import prisma from "@/lib/connect-prisma";
@@ -46,11 +43,5 @@ async function createPageHandler(req: NextRequest, event: NextFetchEvent) {
 }
 
 export async function POST(req: NextRequest, event: NextFetchEvent) {
-  if (req.method !== "POST") {
-    return new Response("invalid method", {
-      status: 405,
-    });
-  }
-
   return createPageHandler(req, event);
 }

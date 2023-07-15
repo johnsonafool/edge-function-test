@@ -81,21 +81,9 @@ async function createCommentHandler(req: NextRequest, event: NextFetchEvent) {
 }
 
 export async function GET(req: NextRequest, event: NextFetchEvent) {
-  if (req.method !== "GET") {
-    return new Response("invalid method", {
-      status: 405,
-    });
-  }
-
   return readCommentsHandler(req, event);
 }
 
 export async function POST(req: NextRequest, event: NextFetchEvent) {
-  if (req.method !== "POST") {
-    return new Response("invalid method", {
-      status: 405,
-    });
-  }
-
   return createCommentHandler(req, event);
 }
