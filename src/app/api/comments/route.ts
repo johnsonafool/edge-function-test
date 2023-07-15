@@ -4,9 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 import { extractBody } from "@/lib/extract-body";
 import prisma from "@/lib/connect-prisma";
 
-export const config = {
-  runtime: "edge",
-};
+// export const config = {
+//   runtime: "edge",
+// };
 
 const createCommentSchema = z.object({
   page: z.string().max(64).min(1),

@@ -3,9 +3,9 @@ import { z } from "zod";
 import { extractBody } from "@/lib/extract-body";
 import prisma from "@/lib/connect-prisma";
 
-export const config = {
-  runtime: "edge",
-};
+// export const config = {
+//   runtime: "edge",
+// };
 
 const schema = z.object({
   handle: z.string().max(64).min(1),

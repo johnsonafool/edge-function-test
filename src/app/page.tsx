@@ -5,6 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+
 export default function Home() {
   const router = useRouter();
 
